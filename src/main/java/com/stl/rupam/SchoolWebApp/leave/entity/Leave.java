@@ -1,17 +1,13 @@
 package com.stl.rupam.SchoolWebApp.leave.entity;
 
-import java.time.LocalDate;
-//import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,9 +38,8 @@ public class Leave {
 //	@Column(nullable = false)
 	private Boolean status;
 	
-	@Max(value = 100, message = "character limit is 100")
+	@Size(max = 100, message = "character limit is 100")
 	private String reason;
 
-      
-	
+    
 }
