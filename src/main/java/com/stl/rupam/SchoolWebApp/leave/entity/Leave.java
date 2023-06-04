@@ -1,5 +1,7 @@
 package com.stl.rupam.SchoolWebApp.leave.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,10 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -29,17 +29,23 @@ public class Leave {
 	@Pattern(regexp = "^[SMS]{3}[0-9]{3}$", message = "please add valid ID")
 	private String studentId;
 	
-	@Column(nullable = false)
-	private String startDate;	
+//	@NotEmpty(message = "student name is mandetory")
+	@Pattern(regexp = "[a-zA-Z]{2}[a-zA-Z ]+", message = "please add valid name")
+	private String studentName;
 	
 	@Column(nullable = false)
-	private String endDate; 
+	private LocalDate startDate;	
+	
+	@Column(nullable = false)
+	private LocalDate endDate; 
 	
 //	@Column(nullable = false)
-	private Boolean status;
+	private String status = "pending";
 	
 	@Size(max = 100, message = "character limit is 100")
 	private String reason;
+	
+	private String time;
 
     
 }

@@ -2,6 +2,8 @@ package com.stl.rupam.SchoolWebApp.leave.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,17 +25,13 @@ public class LeaveController {
 	@Autowired
 	private LeaveService leaveService;
 	
-	@GetMapping("/getLeaveDetails/{id}")
-	public List<Leave> getLeaveDetails(@PathVariable Long id){
-		return leaveService.getLeaveDetails(id);
-	}
-	
 	@PostMapping("/applyLeave")
-	public Leave applyLeave(@RequestBody Leave leave){
+	public String applyLeave(@Valid @RequestBody Leave leave){
 		return leaveService.applyLeave(leave);
 	}
+	
 	@PutMapping("/updateLeave")
-	public Leave updateLeave(@RequestBody Leave leave){
+	public String updateLeave(@Valid @RequestBody Leave leave){
 		return leaveService.updateLeave(leave);
 	}
 	
@@ -41,5 +39,23 @@ public class LeaveController {
 	public List<Leave> listLeaves()
 	{
 		return leaveService.listLeaves();
+	}
+	
+	@GetMapping("/getLeaveDetailsByStudentId/{studentId}")
+	public List<Leave> getLeaveDetailsByStudentId(@PathVariable String studentId)
+	{
+		return leaveService.getLeaveDetailsByStudentId(studentId);
+	}
+	
+	@PutMapping("/approve/{id}")
+	public void approveLeave(@PathVariable Long id)
+	{
+		leaveService.approveLeave(id);
+	}
+	
+	@PutMapping("/reject/{id}")
+	public void rejectLeave(@PathVariable Long id)
+	{
+		leaveService.rejectLeave(id);
 	}
 }
