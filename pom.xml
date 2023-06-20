@@ -84,6 +84,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>leave-microservice</finalName>
 	</build>
 
 </project>
