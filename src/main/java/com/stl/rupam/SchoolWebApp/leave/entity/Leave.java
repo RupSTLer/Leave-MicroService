@@ -29,8 +29,8 @@ public class Leave {
 	private String studentId;
 	
 //	@NotEmpty(message = "student name is mandetory")
-	@Pattern(regexp = "[a-zA-Z]{2}[a-zA-Z ]+", message = "please add valid name")
-	private String studentName;
+//	@Pattern(regexp = "[a-zA-Z]{2}[a-zA-Z ]+", message = "please add valid name")
+//	private String studentName;
 	
 	@Column(nullable = false)
 	private LocalDate startDate;

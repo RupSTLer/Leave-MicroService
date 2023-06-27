@@ -37,7 +37,7 @@ public class LeaveServiceTest {
 	@Rollback(value = false)
 	public void applyLeaveTest() {
 				
-		Leave mockLeave = new Leave(2L, "SMS001", "Rupam Roy", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14");
+		Leave mockLeave = new Leave(2L, "SMS001", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14");
 		
 		when(leaveRepo.save(mockLeave)).thenReturn(mockLeave);   //mocking
 		
@@ -54,8 +54,8 @@ public class LeaveServiceTest {
 		String studentId = "SMS002";
 		List<Leave> mockLeaveList = new ArrayList<Leave>();
 		
-		mockLeaveList.add(new Leave(2L, studentId, "Rupam Roy", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14"));
-		mockLeaveList.add(new Leave(3L, studentId, "Ritam Roy", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "sick", "20-11-2023 02:14"));
+		mockLeaveList.add(new Leave(2L, studentId, LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14"));
+		mockLeaveList.add(new Leave(3L, studentId, LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "sick", "20-11-2023 02:14"));
 			
 		when(leaveRepo.getLeavesListByStudentId(studentId)).thenReturn(mockLeaveList);
 		
@@ -74,8 +74,8 @@ public class LeaveServiceTest {
 		
 		List<Leave> mockLeaveList = new ArrayList<Leave>();
 		
-		mockLeaveList.add(new Leave(2L, "SMS005", "Ritam Roy", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14"));
-		mockLeaveList.add(new Leave(3L, "SMS005", "Rupam Roy", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14"));
+		mockLeaveList.add(new Leave(2L, "SMS001", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14"));
+		mockLeaveList.add(new Leave(3L, "SMS002", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "sick", "20-11-2023 02:14"));
 		
 		when(leaveRepo.findAll()).thenReturn(mockLeaveList);
 		
@@ -91,7 +91,7 @@ public class LeaveServiceTest {
 	@Rollback(value = false)
 	public void updateLeaveTest() {
 
-		Leave leave = new Leave(2L, "SMS005", "Rupam Roy", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14");
+		Leave leave = new Leave(2L, "SMS005", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14");
 
 		leave.setStudentId("SMS005");
  

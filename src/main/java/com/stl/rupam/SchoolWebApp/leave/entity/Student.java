@@ -18,13 +18,10 @@ import lombok.Data;
 @Data
 @Table(name = "students")
 public class Student {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+		
 //	@NotEmpty(message = "student id is mandetory")
 //	@Pattern(regexp = "^[SMS]{3}[0-9]{3}$", message = "please add valid ID")
+	@Id
 	private String studentId;
 	
 	@NotEmpty(message = "username is mandetory")
