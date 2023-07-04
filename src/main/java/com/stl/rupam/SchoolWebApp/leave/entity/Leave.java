@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +42,7 @@ public class Leave {
 //	@Column(nullable = false)
 	private String status = "pending";
 	
-//	@Size(max = 100, message = "character limit is 100")
+	@Size(max = 100, message = "character limit is 100")
 	private String reason;
 	
 	private String time;

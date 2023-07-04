@@ -1,5 +1,6 @@
 package com.stl.rupam.SchoolWebApp.leave.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -42,7 +43,13 @@ public class LeaveService {
 	
 	private String validateLeave(Leave leave)
 	{
+		LocalDate curDate = LocalDate.now();
+		
 		try {
+			if(leave.getStartDate().isBefore(curDate))
+			{
+				throw new IllegalArgumentException("Please select any future dates");
+			}
 
 			if(leave.getStartDate().isAfter(leave.getEndDate())) {
 				
@@ -55,10 +62,9 @@ public class LeaveService {
 			if(!existingLeave.isEmpty())
 			{
 				throw new IllegalArgumentException("Leave already applied for the same dates");
-
 			}
 			
-			if(leave.getReason().length() > 100)
+			if(leave.getReason().length() >= 101)
 			{
 				throw new IllegalArgumentException("Maximum character exceeded");
 			}

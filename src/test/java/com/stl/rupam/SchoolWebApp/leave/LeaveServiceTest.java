@@ -37,7 +37,7 @@ public class LeaveServiceTest {
 	@Rollback(value = false)
 	public void applyLeaveTest() {
 				
-		Leave mockLeave = new Leave(2L, "SMS001", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14");
+		Leave mockLeave = new Leave(2L, "SMS002", LocalDate.of(2023, 5, 30), LocalDate.of(2023, 5, 31), "pending", "event", "20-11-2023 02:14");
 		
 		when(leaveRepo.save(mockLeave)).thenReturn(mockLeave);   //mocking
 		

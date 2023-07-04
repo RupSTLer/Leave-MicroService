@@ -23,7 +23,7 @@ public class StudentRest {
 	
 	public static Student getStudentByStudentId(String studentId)
 	{
-		String url = "http://127.0.0.1:9003/student/" + studentId;
+		String url = "http://localhost:9003/student/" + studentId;
 		ResponseEntity<Student> response = restTemplate.getForEntity(url, Student.class);
 		
 		if(response.getStatusCode() == HttpStatus.OK)
