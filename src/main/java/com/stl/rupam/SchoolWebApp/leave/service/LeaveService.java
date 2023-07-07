@@ -1,5 +1,6 @@
 package com.stl.rupam.SchoolWebApp.leave.service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,10 @@ public class LeaveService {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 		String timestamp = datetime.format(format);
 		leave.setTime(timestamp);
+		
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		
+//		LocalDate l = LocalDate.parse(leave.getEndDate(), formatter);
 		
 		String s = validateLeave(leave);
 		
@@ -69,6 +74,11 @@ public class LeaveService {
 				throw new IllegalArgumentException("Maximum character exceeded");
 			}
 			
+			if(isWeekend(leave.getStartDate()) || isWeekend(leave.getEndDate()))
+			{
+				throw new IllegalArgumentException("Weekends are not valid for leaves");
+			}
+			
 			Student student = StudentRest.getStudentByStudentId(leave.getStudentId());
 			
 			if(student == null)
@@ -84,6 +94,12 @@ public class LeaveService {
 		
 		
 		return null;
+	}
+	
+	private boolean isWeekend(LocalDate date)
+	{
+		DayOfWeek dayOfWeek = date.getDayOfWeek();
+		return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY;
 	}
 
 
